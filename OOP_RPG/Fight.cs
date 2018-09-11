@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OOP_RPG
 {
@@ -8,21 +9,22 @@ namespace OOP_RPG
         List<Monster> Monsters { get; set; }
         public Game game { get; set; }
         public Hero hero { get; set; }
-        
+        public Monster monster { get; set; }
+
         public Fight(Hero hero, Game game) {
             this.Monsters = new List<Monster>();
             this.hero = hero;
             this.game = game;
             this.AddMonster("Squid", 9, 8, 20);
-               this.AddMonster("moli", 9, 8, 20);
-               this.AddMonster("yoli", 9, 8, 20);
-               this.AddMonster("doli", 9, 8, 20);
+            this.AddMonster("moli", 15, 18, 29);
+            this.AddMonster("yoli", 7, 38, 18);
+            this.AddMonster("doli", 19, 11, 14);
 
 
         }
         
         public void AddMonster(string name, int strength, int defense, int hp) {
-            var monster = new Monster();
+            var monster = new Monster(name,strength,defense,hp,hp);
             monster.Name = name;
             monster.Strength = strength;
             monster.Defense = defense;
@@ -31,9 +33,16 @@ namespace OOP_RPG
             this.Monsters.Add(monster);
         }
         
+
         public void Start() {
-            var enemy = this.Monsters[0];
-            Console.WriteLine("You've encountered a " + enemy.Name + "! " + enemy.Strength + " Strength/" + enemy.Defense + " Defense/" + 
+            var Random = this.Monsters.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+            var LastMonster = this.Monsters.Last();
+            var SecondMonster = this.Monsters[1];
+            var lessHpEnemy = (from p in this.Monsters select p.CurrentHP < 20).FirstOrDefault();
+            var lessStrengthEnemy = (from p in this.Monsters select p.Strength >= 11).FirstOrDefault();
+            var enemy = Random;
+            Console.WriteLine("You've1" +
+                " encountered a " + enemy.Name + "! " + enemy.Strength + " Strength/" + enemy.Defense + " Defense/" + 
             enemy.CurrentHP + " HP. What will you do?");
             Console.WriteLine("1. Fight");
             var input = Console.ReadLine();
