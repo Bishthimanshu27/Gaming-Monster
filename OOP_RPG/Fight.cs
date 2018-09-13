@@ -20,7 +20,6 @@ namespace OOP_RPG
             this.AddMonster("yoli", 7, 38, 18);
             this.AddMonster("doli", 19, 11, 14);
 
-
         }
         
         public void AddMonster(string name, int strength, int defense, int hp) {
@@ -102,6 +101,7 @@ namespace OOP_RPG
         }
         
         public void Win(Monster monster) {
+            hero.Gold = monster.Gold;
             var enemy = monster;
             Console.WriteLine(enemy.Name + " has been defeated! You win the battle!");
             game.Main();
