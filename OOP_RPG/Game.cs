@@ -6,11 +6,14 @@ namespace OOP_RPG
     public class Game
     {
         public Hero hero { get; set; }
-        
+        Shop Shop { get; set; }
+
         public Game() {
             this.hero = new Hero();
+            this.Shop = new Shop(this, this.hero);
+
         }
-            
+
         public void Start() {
             Console.WriteLine("Welcome hero!");
             Console.WriteLine("Please enter your name:");
