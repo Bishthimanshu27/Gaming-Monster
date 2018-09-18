@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP_RPG
+﻿namespace OOP_RPG
 {
-    class Potion : IItem
+    public class Potion : IItem
     {
         public string Name { get; set; }
         public int HP { get; set; }
